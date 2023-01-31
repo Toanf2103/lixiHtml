@@ -31,6 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="js/hc-canvas-luckwheel.js"></script>
     <script>
+      var dem=-1;
       var isPercentage = true;
       var prizes = [
               {
@@ -79,21 +80,23 @@
               callback && callback([rand, chances]);
             },
             gotBack: function(data) {
+              dem++;
+              dem = (dem == 0) ? '' : dem;
               if(data == null){
                 Swal.fire(
-                  'Chương trình kết thúc',
+                  'Chương trình kết thúc'+dem,
                   'Đã hết phần thưởng',
                   'error'
                 )
               } else if (data == 'Giải đặc biệt'){
                 Swal.fire(
-                  'Em trúng anh rồi hihi!',
+                  'Em trúng anh rồi hihi!'+dem,
                   data,
                   'success'
                 )
               } else{
                 Swal.fire(
-                  'Hên hên',
+                  'Hên hên'+dem,
                   data,
                   'success'
                 )
@@ -160,5 +163,6 @@
         }
       }
     </script>
+    <script src="js/xuly.js"></script>
   </body>
 </html>
