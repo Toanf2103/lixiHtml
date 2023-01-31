@@ -31,7 +31,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="js/hc-canvas-luckwheel.js"></script>
     <script>
-      var dem=-1;
+      if (localStorage.getItem('dem')) {
+      // Giá trị tồn tại
+        var dem = localStorage.getItem('dem');
+      } else {
+        var dem=-1;
+      }
       var isPercentage = true;
       var prizes = [
               {
@@ -81,6 +86,7 @@
             },
             gotBack: function(data) {
               dem++;
+              localStorage.setItem('dem', dem);
               dem = (dem == 0) ? '' : dem;
               if(data == null){
                 Swal.fire(
