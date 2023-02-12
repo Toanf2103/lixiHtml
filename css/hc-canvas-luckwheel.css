@@ -120,6 +120,7 @@
 body{ margin:0; padding:0; height:100vh; width:100%; }
 
 .bg {
-  background-image: url('../images/bg.jpg');
+  background-image: url('../images/3.jpg');
   background-size: contain;
+  /* background-color: #ccc; */
 }
