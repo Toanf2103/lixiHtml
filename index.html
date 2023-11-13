@@ -43,7 +43,12 @@
                 text: "5 Ngàn",
                 img: "images/5k.png",
                 number: 1, // 1%,
-                percentpage: 0.1 // 20%
+                percentpage: 0.2 // 20%
+              },
+              {
+                text: "Giải siêu đặc biệt",
+                img: "images/anh.jpg",
+                percentpage: 0.1 // 10%
               },
               {
                 text: "10 Ngàn",
@@ -51,28 +56,25 @@
                 number: 1,
                 percentpage: 0.2 // 20%
               },
+              
+              {
+                text: "20 Ngàn",
+                img: "images/20k.jpg",
+                percentpage: 0.3 // 30%
+              },
               {
                 text: "50 Ngàn",
                 img: "images/50k.jpg",
                 number : 1,
-                percentpage: 0.4 // 20%
+                percentpage: 0.1 // 10%
               },
-              {
-                text: "100 Ngàn",
-                img: "images/100k.jpg",
-                number: 1,
-                percentpage: 0.1 // 20%
-              },
+              
               {
                 text: "Giải đặc biệt",
                 img: "images/anh.jpg",
-                percentpage: 0.2 // 20%
+                percentpage: 0.1 // 10%
               },
-              {
-                text: "Giải đặc biệt",
-                img: "images/anh.jpg",
-                percentpage: 0.2 // 20%
-              },
+              
               
             ];
       document.addEventListener(
@@ -91,24 +93,32 @@
               callback && callback([rand, chances]);
             },
             gotBack: function(data) {
-              dem++;
-              localStorage.setItem('dem', dem);
-              dem = (dem == 0) ? '' : dem;
+              // dem++;
+              // localStorage.setItem('dem', dem);
+              // dem = (dem == 0) ? '' : dem;
               if(data == null){
                 Swal.fire(
-                  'Chương trình kết thúc'+dem,
+                  'Chương trình kết thúc',
                   'Đã hết phần thưởng',
                   'error'
                 )
               } else if (data == 'Giải đặc biệt'){
                 Swal.fire(
-                  'Rút lại năm sau!'+dem,
+                  'Rút lại năm sau!',
                   data,
                   'success'
                 )
-              } else{
+              } else if(data == 'Giải siêu đặc biệt'){
                 Swal.fire(
-                  'Hên hên'+dem,
+                  '1 Ngàn đồng kkk!',
+                  data,
+                  'success'
+                )
+              }
+              
+              else{
+                Swal.fire(
+                  'Hên hên',
                   data,
                   'success'
                 )
@@ -122,13 +132,13 @@
         if(isPercentage){
           var counter = 1;
           for (let i = 0; i < prizes.length; i++) {
-            if(prizes[i].number == 0){
-              counter++
-            }
+            // if(prizes[i].number == 0){
+            //   counter++
+            // }
           }
-          if(counter == prizes.length){
-            return null
-          }
+          // if(counter == prizes.length){
+          //   return null
+          // }
           let rand = Math.random();
           let prizeIndex = null;
           console.log(rand);
@@ -156,15 +166,15 @@
             return randomIndex(prizes)
           }
         }else{
-          var counter = 0;
+          // var counter = 0;
           for (let i = 0; i < prizes.length; i++) {
             if(prizes[i].number == 0){
-              counter++
+              // counter++
             }
           }
-          if(counter == prizes.length){
-            return null
-          }
+          // if(counter == prizes.length){
+          //   return null
+          // }
           var rand = (Math.random() * (prizes.length)) >>> 0;
           if(prizes[rand].number != 0){
             prizes[rand].number = prizes[rand].number - 1
