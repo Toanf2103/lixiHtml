@@ -113,13 +113,13 @@
       ctx.rotate((((360 / num) * i - rotateDeg) * Math.PI) / 180);
       ctx.arc(0, 0, 250, 0, (2 * Math.PI) / num, false); // Radius
       if (i % 2 == 0) {
-        ctx.fillStyle = "#ffb820";
+        ctx.fillStyle = "#f4c2d7";
       } else {
-        ctx.fillStyle = "#ffcb3f";
+        ctx.fillStyle = "#fbdae9";
       }
       ctx.fill();
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "#e4370e";
+      ctx.strokeStyle = "#f1bed9";
       ctx.stroke();
       ctx.restore();
       var prizeList = opts.prizes;
