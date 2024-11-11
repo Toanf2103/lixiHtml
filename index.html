@@ -1,192 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vòng Quay Quyên Béo</title>
-    <link rel="stylesheet" href="css/typo/typo.css" />
-    <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
-    <link rel="icon" href="images/icon-web.jpg">
-
-    <style>
-      .hc-luckywheel{
-        position:fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -250px;
-        margin-left: -250px;
-      }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
-  <body class="bg">
-    <div class="wrapper typo" id="wrapper">
-      <section id="luckywheel" class="hc-luckywheel">
-        <div class="hc-luckywheel-container">
-          <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
-            >Vòng Quay Quyên Béo</canvas
-          >
-        </div>
-        <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
-      </section>
+  <body class="bg-gradient-to-r from-purple-500 to-pink-500">
+    <div >
+      toanf
     </div>
-</style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="js/hc-canvas-luckwheel.js"></script>
     <script>
-      if (localStorage.getItem('dem')) {
-      // Giá trị tồn tại
-        var dem = localStorage.getItem('dem');
-      } else {
-        var dem=-1;
+      function show(){
+        Swal.fire({
+          title: "Uyên có peoooo hong?",
+          text: "Hong có body samsung nha!",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Cóaaaaaaaaa!",
+          cancelButtonText: "Hongggg màaaaaaaa!",
+        }).then((result) => {
+          if (!result.isConfirmed) {
+            show()
+          }
+        });
       }
-      var isPercentage = true;
-      var prizes = [
-              {
-                text: "5 Ngàn",
-                img: "images/5k.png",
-                number: 1, // 1%,
-                percentpage: 0.2 // 20%
-              },
-              {
-                text: "Giải siêu đặc biệt",
-                img: "images/anh.jpg",
-                percentpage: 0.1 // 10%
-              },
-              {
-                text: "10 Ngàn",
-                img: "images/10k.jpg",
-                number: 1,
-                percentpage: 0.2 // 20%
-              },
-              
-              {
-                text: "20 Ngàn",
-                img: "images/20k.jpg",
-                percentpage: 0.3 // 30%
-              },
-              {
-                text: "50 Ngàn",
-                img: "images/50k.jpg",
-                number : 1,
-                percentpage: 0.1 // 10%
-              },
-              
-              {
-                text: "Giải đặc biệt",
-                img: "images/anh.jpg",
-                percentpage: 0.1 // 10%
-              },
-              
-              
-            ];
-      document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-          hcLuckywheel.init({
-            id: "luckywheel",
-            config: function(callback) {
-              callback &&
-                callback(prizes);
-            },
-            mode : "both",
-            getPrize: function(callback) {
-              var rand = randomIndex(prizes);
-              var chances = rand;
-              callback && callback([rand, chances]);
-            },
-            gotBack: function(data) {
-              // dem++;
-              // localStorage.setItem('dem', dem);
-              // dem = (dem == 0) ? '' : dem;
-              if(data == null){
-                Swal.fire(
-                  'Chương trình kết thúc',
-                  'Đã hết phần thưởng',
-                  'error'
-                )
-              } else if (data == 'Giải đặc biệt'){
-                Swal.fire(
-                  'Rút lại năm sau!',
-                  data,
-                  'success'
-                )
-              } else if(data == 'Giải siêu đặc biệt'){
-                Swal.fire(
-                  '1 Ngàn đồng kkk!',
-                  data,
-                  'success'
-                )
-              }
-              
-              else{
-                Swal.fire(
-                  'Hên hên',
-                  data,
-                  'success'
-                )
-              }
-            }
-          });
-        },
-        false
-      );
-      function randomIndex(prizes){
-        if(isPercentage){
-          var counter = 1;
-          for (let i = 0; i < prizes.length; i++) {
-            // if(prizes[i].number == 0){
-            //   counter++
-            // }
-          }
-          // if(counter == prizes.length){
-          //   return null
-          // }
-          let rand = Math.random();
-          let prizeIndex = null;
-          console.log(rand);
-          switch (true) {
-            case rand < prizes[4].percentpage:
-              prizeIndex = 4 ;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage:
-              prizeIndex = 3;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage:
-              prizeIndex = 2;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage:
-              prizeIndex = 1;
-              break;  
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
-              prizeIndex = 0;
-              break;  
-          }
-          if(prizes[prizeIndex].number != 0){
-            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
-            return prizeIndex
-          }else{
-            return randomIndex(prizes)
-          }
-        }else{
-          // var counter = 0;
-          for (let i = 0; i < prizes.length; i++) {
-            if(prizes[i].number == 0){
-              // counter++
-            }
-          }
-          // if(counter == prizes.length){
-          //   return null
-          // }
-          var rand = (Math.random() * (prizes.length)) >>> 0;
-          if(prizes[rand].number != 0){
-            prizes[rand].number = prizes[rand].number - 1
-            return rand
-          }else{
-            return randomIndex(prizes)
-          }
-        }
-      }
+      show()
     </script>
-    <script src="js/xuly.js"></script>
   </body>
 </html>
